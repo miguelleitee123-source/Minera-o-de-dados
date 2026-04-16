@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGP Analytics | Monitoramento de Redes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-mode">
+    <div class="background-glow"></div>
+    
+    <main class="container">
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon">📡</div>
+                <div>
+                    <h1>BGP Analytics</h1>
+                    <p>Dashboard de Monitoramento em Tempo Real</p>
+                </div>
+            </div>
+            <div id="status-badge" class="badge">
+                <span class="dot"></span> Monitorando
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Total de Coletas</h3>
+                <div class="value" id="stat-total">0</div>
+                <div class="label">Registros no banco</div>
+            </div>
+            <div class="stat-card">
+                <h3>Prefixos Mitigados</h3>
+                <div class="value danger" id="stat-mitigados">0</div>
+                <div class="label" id="stat-percent">0% do tráfego</div>
+            </div>
+            <div class="stat-card chart-container">
+                <h3>Distribuição de Segurança</h3>
+                <canvas id="statusChart"></canvas>
+            </div>
+        </section>
+
+        <section class="data-section">
+            <div class="section-header">
+                <h2>Últimas Atividades</h2>
+                <div class="refresh-info">Atualizado a poucos segundos</div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Prefixo</th>
+                            <th>Status</th>
+                            <th>ASN Mitigador</th>
+                            <th>Saltos (Path)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-table-body">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
